@@ -1,3 +1,15 @@
+## Video Link
+```bash
+https://drive.google.com/file/d/10joi7RIRHkrWTUZgjlTT2WBI9YPKtxcA/view?usp=drive_link
+```
+## Features
+- User Authentication: Register, log in, and manage profiles.
+- Post Management: Create, edit, and delete posts with text and images.
+- Engagement: Like, comment, and track views on posts.
+- Privacy: Manage profile visibility 
+- Admin Panel: Admin controls for users, posts, and content moderation.
+
+
 ## Installation
 
 ## 1. Clone the repository and navigate to the project folder
