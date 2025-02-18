@@ -1,0 +1,26 @@
+{% extends "layouts/main_layout.html" %}
+{% load static %}
+
+{% block content %}
+<section class="max-w-screen-xl mx-auto my-[120px] px-3">
+    <div class="flex justify-between items-center">
+        <h2 class="text-3xl font-semibold">আমার পোস্টসমূহ</h2>
+        <a href="{% url "create_post" %}" class="btn bg-blue-500 hover:bg-blue-600 text-white hovinline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md">
+            <i class="fa-solid fa-plus"></i> 
+            নতুন পোস্ট যোগ করুন
+        </a>
+    </div>
+    <div class="divider"></div>
+
+    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+        {% for post in posts %}
+            {% include "Blog/components/post_card.html" with show=False %}
+        {% empty %}
+            <div class="col-span-3">
+                <img class="mx-auto" src="{% static "images/no_data_found.png" %}" alt="">
+            </div>
+        {% endfor %}
+        
+    </div>
+</section>
+{% endblock %}

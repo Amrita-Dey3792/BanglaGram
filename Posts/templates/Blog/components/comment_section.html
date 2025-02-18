@@ -1,0 +1,55 @@
+<div class="py-8 relative">
+    <div class="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
+        <div class="w-full flex-col justify-start items-start gap-3 inline-flex">
+            <h2 class="text-gray-700 text-2xl text-center font-medium">মন্তব্যসমূহ</h2>
+            <div class="divider"></div>
+            <div class="w-full flex-col justify-start items-start gap-8 flex">
+                
+                {% for comment in comments %}
+                    <div class="w-full lg:p-8 p-5 bg-white rounded-3xl border border-gray-200 flex-col justify-start items-start flex">
+                        <div class="w-full flex-col justify-start items-start gap-3.5 flex">
+                            <div class="w-full justify-between items-center inline-flex">
+                                <div class="justify-start items-center gap-2.5 flex">
+                                    <div class="avatar placeholder">
+                                        <div class="bg-neutral text-neutral-content w-10 rounded-full">
+                                          <span>{{ comment.author.username|slice:"1"|title }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-col justify-start items-start gap-1 inline-flex">
+                                        <h5 class="text-gray-700 text-sm font-semibold leading-snug">{{ comment.author.username }}</h5>
+                                        <h6 class="text-gray-600 text-xs leading-5 font-medium">{{ comment.created_at|date:"d M Y" }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <p id="comment-{{ comment.id }}" class="text-gray-800 text-sm font-normal leading-snug">{{ comment.content }}</p>
+                            {% if comment.author == request.user %}
+                            <div class="w-full justify-end items-start gap-3 inline-flex">
+                                <a href="{% url "delete_comment" comment_id=comment.id %}" onclick="return confirm('আপনি কি সত্যিই এই মন্তব্যটি মুছে ফেলতে চান?')" class="btn btn-error text-white">
+                                    মুছুন
+                                </a>
+                                <button onclick="handleEditComment({{ comment.id }})" class="btn bg-blue-500 hover:bg-blue-600 text-white">
+                                   সম্পাদনা করুন 
+                                </button>
+
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="flex flex-col gap-2 items-center w-full">
+                        <svg class="w-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="message">
+                            <g>
+                              <path fill="#fe3745" fill-rule="evenodd" d="M46.66 48.7H21.88a7.41 7.41 0 0 1-7.28-6.35l1.84-1.05.88-.51h24.77a7.4 7.4 0 0 0 7.37-7.37V15.53h3.18A7.4 7.4 0 0 1 60 22.9v33.51l-12.45-7.2Z"></path>
+                              <path fill="#ffc987" fill-rule="evenodd" d="M17.32 40.79h24.77a7.4 7.4 0 0 0 7.37-7.37V15a7.4 7.4 0 0 0-7.37-7.37H11.36A7.4 7.4 0 0 0 4 15v33.47l12.44-7.17Z"></path>
+                              <path fill="#1e99d6" d="M14 17.2a.88.88 0 0 1-.88-.88.86.86 0 0 1 .88-.85h25.48a.83.83 0 0 1 .85.85.85.85 0 0 1-.85.88zm0 8.34a.89.89 0 0 1-.88-.88.88.88 0 0 1 .88-.85h25.48a.84.84 0 0 1 .85.85.86.86 0 0 1-.85.88zm0 8.33a.87.87 0 1 1 0-1.73h25.48a.87.87 0 0 1 0 1.73z"></path>
+                            </g>
+                          </svg>
+                          <p class="text-center text-xl font-medium text-gray-700">এখনো কোন মন্তব্য নেই।</p>
+                          <p class="text-gray-600">আপনি প্রথম ব্যক্তি হোন, যিনি আপনার মতামত শেয়ার করবেন!</p>
+                    </div>
+                {% endfor %}
+       
+            </div>
+        </div>
+    </div>
+</div>

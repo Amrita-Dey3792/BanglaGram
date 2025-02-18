@@ -1,0 +1,78 @@
+{% load static %}
+<nav class="navbar max-w-screen-xl mx-auto">
+    <div class="navbar-start">
+        <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                </svg>
+            </div>
+            <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                <li><a href="{% url 'home' %}">হোম</a></li>
+                <li>
+                    <a href="#">পেজসমূহ</a>
+                    <ul class="p-2">
+                        <li><a href="#">সাবমেনু ১</a></li>
+                        <li><a href="#">সাবমেনু ২</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">ক্যাটাগরিসমূহ</a></li>
+                <li><a href="#">গ্যালারি</a></li>
+                <li><a href="#">অন্যান্য</a></li>
+            </ul>
+        </div>
+        <a href="{% url 'home' %}">
+            <div class="w-12">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="bold">
+                    <path fill="#2196f3" d="M403.3 235.9c17-20.8 27.5-46.1 30.1-72.8C441.7 78 374.9 6 291.6 6H66.2c-8.3 0-15 6.7-15 15v59.3c0 8.3 6.7 15 15 15h38.4v321.4H66.2c-8.3 0-15 6.7-15 15V491c0 8.3 6.7 15 15 15h236.5c79 0 149.7-57.8 157.4-136.6 5.2-54.1-18.3-102.8-56.8-133.5zM193.7 95.3h97.9c29.6 0 53.6 24 53.6 53.6s-24 53.6-53.6 53.6h-97.9V95.3zm97.9 321.4h-97.9v-125h97.9c34.5 0 62.5 28 62.5 62.5s-27.9 62.5-62.5 62.5z"></path>
+                </svg>
+            </div>
+        </a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+            <li><a href="{% url 'home' %}" class="font-medium">হোম</a></li>
+            <li>
+                <details>
+                    <summary class="font-medium">পেজসমূহ</summary>
+                    <ul class="p-2">
+                        <li><a href="#">সাবমেনু ১</a></li>
+                        <li><a href="#">সাবমেনু ২</a></li>
+                    </ul>
+                </details>
+            </li>
+            <li><a class="font-medium">ক্যাটাগরিসমূহ</a></li>
+            <li><a href="#" class="font-medium">গ্যালারি</a></li>
+            <li><a href="#" class="font-medium">অন্যান্য</a></li>
+        </ul>
+    </div>
+    <div class="navbar-end">
+        {% if user.is_authenticated %}
+        <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                {% if user.profile.profile_picture %}
+                <div class="avatar placeholder">
+                    <img class="bg-neutral text-neutral-content w-10 rounded-full" src="{{ user.profile.profile_picture.url }}" alt="{{ user.username }}">
+                </div>
+                {% else %}
+                <div class="avatar placeholder">
+                    <div class="bg-neutral text-neutral-content w-10 rounded-full">
+                        <span>{{ user.username|slice:"1"|title }}</span>
+                    </div>
+                </div>
+                {% endif %}
+              
+            </div>
+            <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                <li>
+                    <a href="{% url 'my_posts' %}" class="justify-between font-medium">আমার পোস্টসমূহ</a>
+                </li>
+                <li><a href="{% url "profile" %}">প্রোফাইল</a></li>
+                <li><a href="{% url 'user_logout' %}" class="font-semibold">লগ আউট</a></li>
+            </ul>
+        </div>
+        {% else %}
+        <a href="{% url 'user_login' %}" class="btn bg-blue-500 hover:bg-blue-600 text-white rounded-md">লগ ইন</a>
+        {% endif %}
+    </div>
+</nav>

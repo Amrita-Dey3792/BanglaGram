@@ -1,0 +1,99 @@
+[
+    {
+      "model": "Blog.category",
+      "pk": 1,
+      "fields": {
+        "name": "Technology",
+        "created_at": "2025-02-12T10:00:00Z",
+        "updated_at": "2025-02-12T10:00:00Z"
+      }
+    },
+    {
+      "model": "Blog.category",
+      "pk": 2,
+      "fields": {
+        "name": "Health",
+        "created_at": "2025-02-12T10:05:00Z",
+        "updated_at": "2025-02-12T10:05:00Z"
+      }
+    },
+    {
+      "model": "Blog.category",
+      "pk": 3,
+      "fields": {
+        "name": "Travel",
+        "created_at": "2025-02-12T10:10:00Z",
+        "updated_at": "2025-02-12T10:10:00Z"
+      }
+    },
+    {
+      "model": "Blog.tag",
+      "pk": 1,
+      "fields": {
+        "name": "AI",
+        "created_at": "2025-02-12T10:15:00Z",
+        "updated_at": "2025-02-12T10:15:00Z"
+      }
+    },
+    {
+      "model": "Blog.tag",
+      "pk": 2,
+      "fields": {
+        "name": "Fitness",
+        "created_at": "2025-02-12T10:20:00Z",
+        "updated_at": "2025-02-12T10:20:00Z"
+      }
+    },
+    {
+      "model": "Blog.tag",
+      "pk": 3,
+      "fields": {
+        "name": "Adventure",
+        "created_at": "2025-02-12T10:25:00Z",
+        "updated_at": "2025-02-12T10:25:00Z"
+      }
+    },
+    {
+      "model": "Blog.post",
+      "pk": 1,
+      "fields": {
+        "title": "The Rise of AI in Modern Technology",
+        "content": "Artificial Intelligence is revolutionizing various industries. From healthcare to finance, AI is making processes faster and smarter, reducing human effort and increasing efficiency across multiple domains. Companies worldwide are investing heavily in AI research and development to stay ahead in the competitive market. This article explores how AI is shaping the future of technology and what we can expect in the coming years.",
+        "featured_image": "https://newo.ai/wp-content/uploads/2024/09/1-How-AI-is-Transforming-Mobile-Technology.jpg",
+        "author": 1,
+        "category": 1,
+        "tags": [1],
+        "created_at": "2025-02-12T10:30:00Z",
+        "updated_at": "2025-02-12T10:30:00Z"
+      }
+    },
+    {
+      "model": "Blog.post",
+      "pk": 2,
+      "fields": {
+        "title": "10 Simple Exercises for a Healthy Life",
+        "content": "Maintaining a healthy lifestyle requires regular exercise. Incorporating simple movements like stretching, jogging, and strength training can significantly improve overall well-being. Physical activity enhances cardiovascular health, reduces stress, and boosts mood by releasing endorphins. This guide provides ten effective exercises that you can do daily to keep yourself fit, regardless of age or fitness level.",
+        "featured_image": "https://newo.ai/wp-content/uploads/2024/09/1-How-AI-is-Transforming-Mobile-Technology.jpg",
+        "author": 1,
+        "category": 2,
+        "tags": [2],
+        "created_at": "2025-02-12T10:35:00Z",
+        "updated_at": "2025-02-12T10:35:00Z"
+      }
+    },
+    {
+      "model": "Blog.post",
+      "pk": 3,
+      "fields": {
+        "title": "Top 5 Travel Destinations for Adventure Seekers",
+        "content": "If you are an adventure enthusiast, you must explore some of the world's most thrilling destinations. From mountain trekking in the Himalayas to deep-sea diving in the Great Barrier Reef, adventure tourism is gaining immense popularity. This article lists the top five destinations that offer unforgettable experiences, adrenaline rushes, and breathtaking landscapes for thrill-seekers.",
+        "featured_image": "https://newo.ai/wp-content/uploads/2024/09/1-How-AI-is-Transforming-Mobile-Technology.jpg",
+        "author": 1,
+        "category": 3,
+        "tags": [3],
+        "created_at": "2025-02-12T10:40:00Z",
+        "updated_at": "2025-02-12T10:40:00Z"
+      }
+    }
+]
+  

@@ -1,0 +1,18 @@
+{% extends "layouts/main_layout.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section class="max-w-screen-xl mx-auto my-40 p-10 rounded-md" data-theme="light">
+    <h1 class="text-3xl font-semibold text-center text-gray-900">নতুন পোস্ট তৈরি করুন</h1>
+    <div class="divider"></div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="flex gap-2 justify-end mt-4">
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn text-gray-700 hover:text-gray-900">বাতিল করুন</a>
+            <button type="submit" class="btn bg-blue-500 hover:bg-blue-600 text-white rounded-md">জমা দিন</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

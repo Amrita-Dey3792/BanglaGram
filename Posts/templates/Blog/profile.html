@@ -1,0 +1,59 @@
+{% extends "layouts/main_layout.html" %}
+{% load static %}
+
+{% block content %}
+<section class="max-w-screen-xl mx-auto my-[120px] px-3">
+    <div class="flex justify-between items-center">
+        <h2 class="text-3xl font-medium">Your Profile</h2>
+    </div>
+    <div class="divider"></div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="card p-6">
+            <h3 class="text-xl font-medium">Profile Information</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mt-4">
+                    <label for="bio" class="block text-sm">Bio</label>
+                    <textarea name="bio" id="bio" class="textarea textarea-bordered w-full rounded-md">{{ form.bio.value }}</textarea>
+                </div>
+
+                <div class="mt-4">
+                    <label for="profile_picture" class="block text-sm">Profile Picture</label>
+                    <input type="file" name="profile_picture" id="profile_picture" class="input input-bordered w-full rounded-md">
+                </div>
+
+                <div class="mt-4">
+                    <label for="location" class="block text-sm">Location</label>
+                    <input type="text" name="location" id="location" class="input input-bordered w-full rounded-md" value="{{ form.location.value }}">
+                </div>
+
+                <div class="mt-4">
+                    <label for="date_of_birth" class="block text-sm">Date of Birth</label>
+                    <input type="date" name="date_of_birth" id="date_of_birth" class="input input-bordered w-full rounded-md" value="{{ form.date_of_birth.value }}">
+                </div>
+
+                <div class="flex justify-end mt-5 gap-2">
+                    <button type="submit" class="btn bg-purple-500 hover:bg-purple-600 text-white rounded-md">Save Changes</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card p-6">
+            <h3 class="text-xl font-medium">Profile Preview</h3>
+            <div class="mt-4">
+                <p class="font-medium">Username: {{ profile.user.username }}</p>
+                <p class="font-medium">Email: {{ profile.user.email }}</p>
+                {% if profile.profile_picture %}
+                    <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="w-32 h-32 rounded-full">
+                {% else %}
+                    <p>No profile picture</p>
+                {% endif %}
+                <p class="mt-2">Bio: {{ profile.bio }}</p>
+                <p class="mt-2">Location: {{ profile.location }}</p>
+                <p class="mt-2">Date of Birth: {{ profile.date_of_birth }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

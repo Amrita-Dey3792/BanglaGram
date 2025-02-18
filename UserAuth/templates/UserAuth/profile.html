@@ -1,0 +1,42 @@
+{% extends "layouts/main_layout.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section class="max-w-screen-xl mx-auto my-[120px] px-3">
+    <div class="flex justify-between items-center">
+        <h2 class="text-3xl font-semibold">আমার প্রোফাইল</h2>
+    </div>
+    <div class="divider"></div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="card p-6">
+            <h3 class="text-xl font-medium mb-5">প্রোফাইল তথ্য</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | crispy }}
+
+                <div class="flex justify-end mt-5 gap-2">
+                    <button type="submit" class="btn bg-blue-500 hover:bg-blue-600 text-white rounded-md">সংরক্ষণ করুন</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card p-6">
+            <h3 class="text-xl font-medium">প্রোফাইল প্রিভিউ</h3>
+            <div class="mt-4">
+                <p class="font-medium">ব্যবহারকারীর নাম: {{ profile.user.username }}</p>
+                <p class="font-medium">ইমেল: {{ profile.user.email }}</p>
+                {% if profile.profile_picture %}
+                    <img src="{{ profile.profile_picture.url }}" alt="প্রোফাইল ছবি" class="w-48 h-48 rounded-full">
+                {% else %}
+                    <p>কোনো প্রোফাইল ছবি নেই</p>
+                {% endif %}
+                <p class="mt-2">বায়ো: {{ profile.bio }}</p>
+                <p class="mt-2">অবস্থান: {{ profile.location }}</p>
+                <p class="mt-2">জন্ম তারিখ: {{ profile.date_of_birth }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

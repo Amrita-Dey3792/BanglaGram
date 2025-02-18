@@ -1,0 +1,33 @@
+{% extends "layouts/main_layout.html" %}
+
+{% load static %}
+
+{% block body %}
+<section class="mx-auto flex flex-col min-h-screen justify-center items-center px-3">
+    <section class="min-w-full md:min-w-[500px] shadow-xl p-4 py-8 md:p-10 bg-white rounded-xl" data-theme="light">
+      <img class="w-16 h-auto mx-auto" src="{% static 'images/user_icon.png' %}" alt="user_icon">
+      <h2 class="text-3xl font-semibold text-center mt-4 mb-8">লগইন</h2>
+      <form class="flex flex-col gap-5" method="POST">
+        {% csrf_token %}
+        <label class="input input-bordered flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+          </svg>
+          <input type="text" class="grow font-semibold" placeholder="ইউজারনেম" name="username" required />
+        </label>
+        <label class="input input-bordered flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
+            <path fill-rule="evenodd" d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z" clip-rule="evenodd" />
+          </svg>
+          <input type="password" class="grow font-semibold" placeholder="পাসওয়ার্ড" name="password" required />
+        </label>
+        <button class="btn w-full text-white text-lg bg-blue-500 hover:bg-blue-600">
+          লগইন
+        </button>
+      </form>
+      <p class="text-center mt-6">
+        একাউন্ট নেই? <a class="text-blue-600 font-semibold hover:underline" href="{% url 'user_register' %}">এখনই রেজিস্টার করুন</a>
+      </p>
+    </section>
+</section>
+{% endblock %}

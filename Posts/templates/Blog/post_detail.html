@@ -1,0 +1,81 @@
+{% extends "layouts/main_layout.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<section class="max-w-screen-xl mx-auto my-[120px]">
+    <div class="card bg-base-100 shadow-xl rounded-md" data-theme="light">
+        <figure class="px-5 pt-5">
+          <img
+            src="{{ post.image.url }}"
+            alt="Shoes"
+            class="w-full object-cover max-h-[500px]" />
+        </figure>
+        <div class="card-body p-5">
+
+          <h2 class="text-3xl font-semibold text-gray-700">{{ post.title }}</h2>
+          
+          <p class="text-gray-600 mt-8">{{ post.content}}</p>
+
+          <div class="flex items-center justify-end space-x-6 p-4">
+            <!-- Views -->
+            <div class="flex items-center space-x-2 text-gray-700">
+              <div class="flex items-center justify-center w-10 h-10 bg-white shadow-md rounded-full">
+                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 4.5C6.857 4.5 2.735 8.025 1 12c1.735 3.975 5.857 7.5 11 7.5s9.265-3.525 11-7.5c-1.735-3.975-5.857-7.5-11-7.5zM12 18c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6zm0-10a4 4 0 100 8 4 4 0 000-8z"></path>
+                </svg>
+              </div>
+              <span class="text-lg font-semibold">{{ post.view_count }}</span>
+            </div>
+          
+            <!-- Likes -->
+            {% if user.is_authenticated %}
+            <a href="{% url "like_post" post.id %}" class="flex items-center space-x-2 text-gray-700 {% if is_liked %} text-red-500 {% endif %} transition duration-300">
+              <div class="flex items-center justify-center w-10 h-10 bg-white shadow-md rounded-full transition duration-300">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                </svg>
+              </div>
+              <span class="text-lg font-semibold">{{ post.liked_users.count }}</span>
+            </a>
+            {% endif %}
+          </div>
+   
+          <div class="flex items-center gap-3 mt-8">
+            <div class="avatar placeholder">
+                <div class="bg-neutral text-neutral-content w-10 rounded-full">
+                  <span>{{ post.author.username|slice:"1"|title }}</span>
+                </div>
+            </div>
+              <div class="text-sm">
+                <p class="font-medium text-gray-700">By {{ post.author.username }}</p>
+                <p class="text-xs text-gray-600">{{ post.created_at|date:"d M Y" }}</p>
+              </div>
+          </div>
+        </div>
+        <div class="p-5">
+            {% if request.user.is_authenticated %}
+            
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                
+                 <div class="flex justify-end">
+                     <button type="submit" class="btn bg-blue-500 hover:bg-blue-600 text-white"><i class="fa-solid fa-paper-plane"></i> মন্তব্য করুন</button>
+                </div>
+            </form>
+            
+            {% else %}
+                <p class="text-gray-600 text-center text-lg">মন্তব্য করার জন্য আপনাকে <a class="text-purple-600 font-medium" href="{% url "user_login" %}">লগইন</a> করতে হবে।</p>
+            {% endif %}
+        </div>
+
+        
+        {% include "Blog/components/comment_section.html" %}
+    </div>
+
+    {% include "Blog/components/edit_comment_modal.html" %}
+</section>
+
+{% endblock %}
