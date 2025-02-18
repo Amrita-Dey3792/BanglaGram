@@ -4,7 +4,13 @@
 
 {% block content %}
 <section class="max-w-screen-xl mx-auto my-40 p-10 rounded-md" data-theme="light">
-    <h1 class="text-3xl font-semibold text-center text-gray-900">নতুন পোস্ট তৈরি করুন</h1>
+    <h1 class="text-3xl font-semibold text-center text-gray-900">
+        {% if form.instance.id  %}
+            পোস্ট আপডেট করুন
+        {% else %}
+            নতুন পোস্ট তৈরি করুন
+        {% endif %}
+    </h1>
     <div class="divider"></div>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
